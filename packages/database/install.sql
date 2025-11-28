@@ -77,6 +77,12 @@ PROMPT Installing p_accounts_features_rights package specification...
 PROMPT Installing p_accounts_features_rights package body...
 @@packages/p_accounts_features_rights_body.sql
 
+PROMPT Installing p_sessions package specification...
+@@packages/p_sessions_spec.sql
+
+PROMPT Installing p_sessions package body...
+@@packages/p_sessions_body.sql
+
 -- Verify installation
 PROMPT
 PROMPT ========================================
@@ -157,9 +163,10 @@ PROMPT
 PROMPT Next steps:
 PROMPT 1. Review the created objects using SQL*Plus DESCRIBE commands
 PROMPT 2. Test database connectivity from your application
-PROMPT 3. Test Oracle packages using: SELECT p_accounts.get_version(), p_features.get_version(), p_accounts_features_rights.get_version() FROM DUAL;
-PROMPT 4. Load initial application data as needed
-PROMPT 5. Additional packages (p_sessions) will be installed in future phases
+PROMPT 3. Test Oracle packages using package functions (all packages now installed)
+PROMPT 4. Test session management: SELECT p_sessions.is_token_unique('test') FROM DUAL;
+PROMPT 5. Load initial application data as needed
+PROMPT 6. All Phase 2 Database Foundation packages are now complete
 PROMPT
 
 -- Commit all changes

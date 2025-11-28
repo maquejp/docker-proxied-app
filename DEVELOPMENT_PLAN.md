@@ -84,14 +84,14 @@ This document outlines the implementation phases for the Docker Proxied App proj
 - [x] Implement get_records function (with pagination, ordering, filtering)
 - [x] Add JSON helper function
 
-### 2.5 Oracle Package Development - p_sessions
+### 2.5 Oracle Package Development - p_sessions ✅
 
-- [ ] Create p_sessions package specification
-- [ ] Implement standard CRUD functions (create_record, update_record, delete_record, get_record, get_records)
-- [ ] Implement validate_token function (checks token existence and validity)
-- [ ] Implement get_token function (returns token entry information)
-- [ ] Add JSON helper function
-- [ ] Add session cleanup procedures for expired sessions
+- [x] Create p_sessions package specification
+- [x] Implement standard CRUD functions (create_record, update_record, delete_record, get_record, get_records)
+- [x] Implement validate_token function (checks token existence and validity)
+- [x] Implement get_token function (returns token entry information)
+- [x] Add JSON helper function
+- [x] Add session cleanup procedures for expired sessions
 
 ### 2.6 Database Testing & Validation
 

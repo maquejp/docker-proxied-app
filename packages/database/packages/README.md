@@ -152,6 +152,65 @@ SELECT p_accounts.update_record(
 SELECT p_accounts.delete_record(1) FROM dual;
 ```
 
+## 4. p_sessions
+
+**Purpose:** Session management with JWT token validation and lifecycle management
+
+**Files:**
+
+- `p_sessions_spec.sql` - Package specification
+- `p_sessions_body.sql` - Package implementation
+- `install_p_sessions.sql` - Installation script
+
+**Standard CRUD Functions:**
+
+- `create_record()` - Create new session with JWT token
+- `update_record()` - Update existing session
+- `delete_record()` - Delete session by PK
+- `get_record()` - Get session by PK (JSON with account details)
+- `get_records()` - Get paginated sessions with filtering
+
+**Specialized Session Management:**
+
+- `validate_token()` - Validate JWT token and return session status
+- `get_token()` - Get complete session information by token
+- `extend_session()` - Extend session duration (refresh token)
+- `terminate_session()` - Terminate session by token (logout)
+- `get_active_sessions_by_account()` - Get all active sessions for account
+- `cleanup_expired_sessions()` - Clean up expired sessions (maintenance)
+
+**Helper Functions:**
+
+- `record_to_json()` - Convert session to JSON with account details
+- `is_session_active()` - Check if session is currently active
+- `is_valid_account()` - Validate account exists
+- `is_token_unique()` - Check token uniqueness for new sessions
+
+### Session Management Examples
+
+```sql
+-- Create session with JWT token
+SELECT p_sessions.create_record(
+    1, 'jwt-token-string-here',
+    SYSTIMESTAMP, NULL, 600
+) FROM dual;
+
+-- Validate token
+SELECT p_sessions.validate_token('jwt-token-string-here') FROM dual;
+
+-- Extend session by 2 hours (120 minutes)
+SELECT p_sessions.extend_session('jwt-token-string-here', 120) FROM dual;
+
+-- Get all active sessions for account
+SELECT p_sessions.get_active_sessions_by_account(1) FROM dual;
+
+-- Terminate session (logout)
+SELECT p_sessions.terminate_session('jwt-token-string-here') FROM dual;
+
+-- Cleanup expired sessions older than 24 hours
+SELECT p_sessions.cleanup_expired_sessions(24) FROM dual;
+```
+
 ## Package Standards
 
 All packages follow consistent patterns:
