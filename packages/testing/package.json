@@ -1,0 +1,43 @@
+{
+    "name": "docker-proxied-app-testing",
+    "version": "1.0.0",
+    "description": "End-to-end and API testing suite for Docker Proxied App using Playwright",
+    "main": "index.js",
+    "scripts": {
+        "test": "playwright test",
+        "test:headed": "playwright test --headed",
+        "test:debug": "playwright test --debug",
+        "test:ui": "playwright test --ui",
+        "test:api": "playwright test tests/api",
+        "test:e2e": "playwright test tests/e2e",
+        "test:report": "playwright show-report",
+        "test:install": "playwright install",
+        "test:install-deps": "playwright install-deps",
+        "codegen": "playwright codegen",
+        "lint": "eslint . --ext .ts",
+        "lint:fix": "eslint . --ext .ts --fix",
+        "format": "prettier --write **/*.ts",
+        "format:check": "prettier --check **/*.ts"
+    },
+    "keywords": [
+        "playwright",
+        "e2e",
+        "api",
+        "testing",
+        "automation",
+        "docker"
+    ],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@playwright/test": "^1.40.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.5",
+        "typescript": "^5.3.3",
+        "@typescript-eslint/eslint-plugin": "^6.15.0",
+        "@typescript-eslint/parser": "^6.15.0",
+        "eslint": "^8.56.0",
+        "prettier": "^3.1.1"
+    }
+}
