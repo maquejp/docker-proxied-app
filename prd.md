@@ -157,6 +157,7 @@ The frontend will use the **eUI (European Union Interface)** framework:
 - **Documentation**: [eUI Showcase](https://eui.ecdevops.eu/eui-showcase-ux-components-19.x)
 - **App Generation Guide**: [eUI Development Guide](https://eui.ecdevops.eu/eui-showcase-ux-components-19.x/showcase-dev-guide/docs/01b-app-generation/00-overview)
 - **Initialization Command**: `npx @eui/cli` (interactive setup)
+- **Setup Requirement**: The eUI CLI requires an empty directory for initialization
 
 #### Code Quality
 

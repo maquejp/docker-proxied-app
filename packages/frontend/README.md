@@ -1,38 +1,26 @@
-# Frontend Package
+# eUI starter app
 
-This directory will contain the Angular (eUI) application for the Docker Proxied App.
+## Development server
 
-## Setup Instructions
+````npm start```` to start the angular project with node-express proxy mock server
 
-The frontend will be initialized using the eUI CLI:
+````npm run start-proxy```` to start the angular project with real backend proxy server deployed
 
-```bash
-cd packages/frontend
-npx @eui/cli
-```
+````npm run build```` to build, lint and test your project for DEV
 
-## About eUI
+````npm run build-prod```` to build, lint and test your project for PROD
 
-**eUI (European Union Interface)** is a comprehensive design system and Angular component library that follows EU design standards.
+````npm run build-prod-skip-test```` to build and lint your project for PROD - Unit test skipped - to be used on Bamboo plans
 
-- **Documentation**: [eUI Showcase](https://eui.ecdevops.eu/eui-showcase-ux-components-19.x)
-- **Development Guide**: [eUI App Generation Guide](https://eui.ecdevops.eu/eui-showcase-ux-components-19.x/showcase-dev-guide/docs/01b-app-generation/00-overview)
-- **Interactive Setup**: The CLI provides guided project initialization
+````npm run build-prod-stats```` to build, lint and test your project for PROD - with stats.json file generated for webpack-bundle-analyzer input
 
-## Technology Stack
+* check package.json for more info on executable scripts provided
 
-- Angular with TypeScript
-- eUI component library
-- Reactive forms for data management
-- Angular routing with authentication guards
-- JWT token management
+## Further help
 
-## Development Structure
+- https://eui.ecdevops.eu
 
-Once initialized, the frontend will include:
+- register on [MS Teams](https://teams.microsoft.com/l/team/19%3a2f5bb6b7d1e24c4aabaa62229d3e1955%40thread.tacv2/conversations?groupId=fb6def72-c57b-4e8f-a82e-49be65d6e1f5&tenantId=b24c8b06-522c-46fe-9080-70926f8dddb1) with your EC mail account, for extra-muros please send a mail to DIGIT-EUI-SUPPORT@ec.europa.eu
 
-- `src/app/` - Angular application components and services
-- `src/app/services/` - Authentication, API, and business logic services
-- `src/app/components/` - UI components organized by feature
-- `src/app/guards/` - Route protection and authentication guards
-- `src/environments/` - Environment-specific configurations
+- For bugs / request new features : Drop us an email at : DIGIT-EUI-SUPPORT@ec.europa.eu
+
