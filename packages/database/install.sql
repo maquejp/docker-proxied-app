@@ -163,8 +163,8 @@ PROMPT
 PROMPT Next steps:
 PROMPT 1. Review the created objects using SQL*Plus DESCRIBE commands
 PROMPT 2. Test database connectivity from your application
-PROMPT 3. Test Oracle packages using package functions (all packages now installed)
-PROMPT 4. Test session management: SELECT p_sessions.is_token_unique('test') FROM DUAL;
+PROMPT 3. Run comprehensive testing: @packages/testing/database/test_database_validation.sql
+PROMPT 4. Create sample data: @packages/testing/database/seed_data.sql
 PROMPT 5. Load initial application data as needed
 PROMPT 6. All Phase 2 Database Foundation packages are now complete
 PROMPT
