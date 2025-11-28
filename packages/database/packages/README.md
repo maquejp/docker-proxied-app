@@ -12,6 +12,6 @@ Each package will have two files:
 ## Packages
 
 - `p_accounts` - Account management operations
-- `p_features` - Feature management operations  
+- `p_features` - Feature management operations
 - `p_accounts_features_rights` - User permission management
 - `p_sessions` - Session and token management
