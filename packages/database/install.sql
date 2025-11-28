@@ -54,6 +54,17 @@ PROMPT Creating performance indexes...
 PROMPT ========================================
 @@06_indexes.sql
 
+PROMPT
+PROMPT ========================================
+PROMPT Installing Oracle PL/SQL packages...
+PROMPT ========================================
+
+PROMPT Installing p_accounts package specification...
+@@packages/p_accounts_spec.sql
+
+PROMPT Installing p_accounts package body...
+@@packages/p_accounts_body.sql
+
 -- Verify installation
 PROMPT
 PROMPT ========================================
@@ -94,6 +105,13 @@ select 'Indexes created: ' || count(*) as index_count
 select 'Functions/Procedures created: ' || count(*) as function_count
   from user_procedures;
 
+-- Check all packages are created
+select 'Packages created: ' || count(*) as package_count
+  from user_objects
+ where object_type in ( 'PACKAGE',
+                        'PACKAGE BODY' )
+   and object_name like 'P_%';
+
 -- Check all views are created
 select 'Views created: ' || count(*) as view_count
   from user_views;
@@ -127,8 +145,9 @@ PROMPT
 PROMPT Next steps:
 PROMPT 1. Review the created objects using SQL*Plus DESCRIBE commands
 PROMPT 2. Test database connectivity from your application
-PROMPT 3. Load initial application data as needed
-PROMPT 4. Configure Oracle packages (p_accounts, p_features) for business logic
+PROMPT 3. Test Oracle packages using: SELECT p_accounts.get_version() FROM DUAL;
+PROMPT 4. Load initial application data as needed
+PROMPT 5. Additional packages (p_features, p_sessions) will be installed in future phases
 PROMPT
 
 -- Commit all changes

@@ -1,17 +1,109 @@
-# Oracle Packages
+# Oracle PL/SQL Packages
 
-This directory contains Oracle PL/SQL package specifications and bodies.
+This directory contains Oracle PL/SQL package specifications and bodies for the Docker Proxied App.
 
-## Package Files
+## Available Packages
 
-Each package will have two files:
+### P_ACCOUNTS ✅ COMPLETE
 
-- `[package_name].pks` - Package specification (interface)
-- `[package_name].pkb` - Package body (implementation)
+Account management operations with full CRUD functionality.
 
-## Packages
+**Files:**
 
-- `p_accounts` - Account management operations
-- `p_features` - Feature management operations
-- `p_accounts_features_rights` - User permission management
-- `p_sessions` - Session and token management
+- `p_accounts_spec.sql` - Package specification
+- `p_accounts_body.sql` - Package implementation
+- `install_p_accounts.sql` - Installation script
+
+**Functions:**
+
+- `create_record()` - Create new account
+- `update_record()` - Update existing account
+- `delete_record()` - Delete account by PK
+- `get_record()` - Get account by PK (JSON)
+- `get_record_by_email()` - Get account by email (JSON)
+- `get_record_by_unikid()` - Get account by unique ID (JSON)
+- `get_records()` - Get paginated accounts list (JSON)
+- `get_record_count()` - Get total count with filters
+- `record_to_json()` - Convert record to JSON
+- `is_valid_email()` - Email format validation
+- `email_exists()` - Check email duplicates
+- `unikid_exists()` - Check unique ID duplicates
+- `get_version()` - Package version info
+
+### P_FEATURES (Planned)
+
+Feature management operations for application permissions.
+
+### P_ACCOUNTS_FEATURES_RIGHTS (Planned)
+
+User permission management linking accounts to features.
+
+### P_SESSIONS (Planned)
+
+Session and JWT token management operations.
+
+## Installation
+
+### Install P_ACCOUNTS Package
+
+```sql
+-- Install specific package
+@packages/install_p_accounts.sql
+
+-- Or install individual components
+@packages/p_accounts_spec.sql
+@packages/p_accounts_body.sql
+```
+
+### Verify Installation
+
+```sql
+-- Check package compilation
+SELECT object_name, object_type, status
+FROM user_objects
+WHERE object_name = 'P_ACCOUNTS';
+
+-- Test package
+SELECT p_accounts.get_version() FROM dual;
+```
+
+## Usage Examples
+
+### P_ACCOUNTS Package
+
+```sql
+-- Create account
+SELECT p_accounts.create_record(
+    'John', 'Doe', 'jdoe123',
+    'john.doe@example.com', 'ADMIN'
+) AS new_account_id FROM dual;
+
+-- Get account by ID (returns JSON)
+SELECT p_accounts.get_record(1) FROM dual;
+
+-- Get account by email
+SELECT p_accounts.get_record_by_email('john.doe@example.com') FROM dual;
+
+-- Get paginated list (page 1, 10 records per page)
+SELECT p_accounts.get_records(1, 10, 'created_on', 'DESC') FROM dual;
+
+-- Update account
+SELECT p_accounts.update_record(
+    1, 'Jane', 'Smith', 'jsmith123',
+    'jane.smith@example.com', 'ADMIN'
+) FROM dual;
+
+-- Delete account
+SELECT p_accounts.delete_record(1) FROM dual;
+```
+
+## Package Standards
+
+All packages follow consistent patterns:
+
+- Standard CRUD functions with validation
+- JSON return format for data retrieval
+- Comprehensive error handling with custom exceptions
+- Parameter validation and sanitization
+- Audit trail support
+- Version tracking
