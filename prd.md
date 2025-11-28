@@ -12,7 +12,7 @@ The target audience for this application is internal users who need access to ac
 
 ## 3. Features
 
-- **Frontend Service:** An Angular (eUI) application built with TypeScript.
+- **Frontend Service:** An Angular (eUI) application built with TypeScript, initialized using the eUI CLI (European Union Interface) - a comprehensive design system and Angular component library. See: [eUI Showcase](https://eui.ecdevops.eu/eui-showcase-ux-components-19.x)
 - **Backend Service:** An ExpressJS API built with TypeScript.
 - **Database:** An Oracle database, initially hosted locally.
 - **Proxy:** An nginx reverse proxy to route traffic to the frontend and backend services.
@@ -125,9 +125,11 @@ All Oracle packages return JSON responses indicating success or failure. The API
 
 Upon a developer's request, a build process will be triggered to create a production-ready Docker image. This process involves:
 
-1. Building the Angular frontend and the ExpressJS API.
-2. Packaging the built frontend and API into a single Docker image with nginx as the web server.
+1. Building the Angular eUI frontend (using `ng build --prod`) and compiling the ExpressJS API (using `tsc`).
+2. Packaging only the production-built artifacts (dist folders) into a single Docker image with nginx as the web server.
 3. This image can then be used to instantiate a container for deployment on the internal infrastructure.
+
+**Note**: The Docker image contains only the compiled/built artifacts, not the development source code, ensuring a lean production deployment.
 
 #### Container Architecture
 
@@ -146,6 +148,16 @@ The application will use Playwright for comprehensive testing:
 - **Cross-browser Testing**: Ensuring compatibility across different browsers
 - **Test Data Management**: Fixtures and utilities for consistent test data
 
+#### Frontend Technology - eUI Framework
+
+The frontend will use the **eUI (European Union Interface)** framework:
+
+- **eUI CLI**: Official command-line tool for generating eUI Angular applications
+- **Design System**: Comprehensive UI component library following EU design standards
+- **Documentation**: [eUI Showcase](https://eui.ecdevops.eu/eui-showcase-ux-components-19.x)
+- **App Generation Guide**: [eUI Development Guide](https://eui.ecdevops.eu/eui-showcase-ux-components-19.x/showcase-dev-guide/docs/01b-app-generation/00-overview)
+- **Initialization Command**: `npx @eui/cli` (interactive setup)
+
 #### Code Quality
 
 - **ESLint/TSLint**: TypeScript linting for both frontend and backend
@@ -160,6 +172,8 @@ The project will follow this folder structure:
 docker-proxied-app/
 ├── packages/
 │   ├── frontend/          # Angular (eUI) application (TypeScript)
+│   │   │                  # Initialized using: npx @eui/cli
+│   │   │                  # eUI: European Union Interface framework
 │   │   ├── src/
 │   │   ├── angular.json
 │   │   ├── tsconfig.json
@@ -200,6 +214,7 @@ docker-proxied-app/
 │       ├── package.json
 │       └── ...
 ├── prd.md                 # This document
+├── DEVELOPMENT_PLAN.md    # Implementation phases and tasks
 ├── README.md
 └── ...
 ```
