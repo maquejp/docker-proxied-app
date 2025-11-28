@@ -1,31 +1,14 @@
 import App from './app';
+import { logger } from './utils/logger';
 
 // Create and start the application
 const app = new App();
-app.listen();
 
-// Graceful shutdown
-process.on('SIGINT', () => {
-  console.log('Received SIGINT. Graceful shutdown...');
-  process.exit(0);
-});
-
-process.on('SIGTERM', () => {
-  console.log('Received SIGTERM. Graceful shutdown...');
-  process.exit(0);
-});
-
-// Handle uncaught exceptions
-process.on('uncaughtException', (err: Error) => {
-  console.error('Uncaught Exception:', err);
+// Start server
+try {
+  app.listen();
+  logger.info('🎯 Application started successfully');
+} catch (error) {
+  logger.error('Failed to start application:', error);
   process.exit(1);
-});
-
-// Handle unhandled rejections
-process.on(
-  'unhandledRejection',
-  (reason: unknown, promise: Promise<unknown>) => {
-    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-    process.exit(1);
-  }
-);
+}
