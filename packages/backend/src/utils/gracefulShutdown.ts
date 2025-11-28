@@ -1,4 +1,5 @@
 import { logger } from './logger';
+import { databaseService } from '@/services/database';
 
 /**
  * Graceful shutdown handler type
@@ -79,6 +80,19 @@ export const gracefulShutdown = async (signal: string): Promise<void> => {
 export const setupGracefulShutdown = (
   appShutdownHandler?: ShutdownHandler
 ): void => {
+  // Add database shutdown handler
+  addShutdownHandler(async () => {
+    try {
+      if (databaseService.isReady()) {
+        logger.info('Shutting down database service...');
+        await databaseService.shutdown();
+        logger.info('Database service shutdown completed');
+      }
+    } catch (error) {
+      logger.error('Error during database shutdown:', error instanceof Error ? error : new Error(String(error)));
+    }
+  });
+
   // Add application-specific shutdown handler if provided
   if (appShutdownHandler) {
     addShutdownHandler(appShutdownHandler);
