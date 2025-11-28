@@ -191,6 +191,7 @@ docker-proxied-app/
 │   │   │   ├── configs/       # Configuration files
 │   │   │   ├── constants/     # Application constants
 │   │   │   └── utils/         # Helper functions
+│   │   ├── README.md      # Backend documentation
 │   │   ├── tsconfig.json
 │   │   ├── .eslintrc.json
 │   │   ├── .prettierrc
@@ -199,17 +200,21 @@ docker-proxied-app/
 │   ├── database/          # Database scripts and Oracle packages
 │   │   ├── packages/      # Oracle PL/SQL packages
 │   │   ├── tables/        # Table creation scripts
+│   │   ├── README.md      # Database documentation
 │   │   └── ...
 │   ├── docker/            # Docker configuration
 │   │   ├── Dockerfile
 │   │   ├── nginx.conf
 │   │   ├── docker-compose.yml
-│   │   └── .env.example
+│   │   ├── .env.example
+│   │   ├── README.md      # Docker documentation
+│   │   └── ...
 │   └── testing/           # Testing suite (Playwright)
 │       ├── e2e/           # End-to-end tests
 │       ├── api/           # API integration tests
 │       ├── fixtures/      # Test data and fixtures
 │       ├── utils/         # Testing utilities
+│       ├── README.md      # Testing documentation
 │       ├── playwright.config.ts
 │       ├── package.json
 │       └── ...
@@ -218,6 +223,8 @@ docker-proxied-app/
 ├── README.md
 └── ...
 ```
+
+**Note**: Each directory includes comprehensive README.md documentation explaining its purpose, structure, and usage patterns.
 
 ## 5. Future Work
 
