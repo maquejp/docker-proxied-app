@@ -23,11 +23,11 @@ This document outlines the implementation phases for the Docker Proxied App proj
 
 ### 1.3 Backend Configuration
 
-- [ ] Create backend package.json with Express, TypeScript, Oracle dependencies
-- [ ] Setup TypeScript configuration (tsconfig.json)
-- [ ] Configure ESLint (.eslintrc.json) for TypeScript
-- [ ] Configure Prettier (.prettierrc) for code formatting
-- [ ] Create basic Express server structure
+- [x] Create backend package.json with Express, TypeScript, Oracle dependencies
+- [x] Setup TypeScript configuration (tsconfig.json)
+- [x] Configure ESLint (.eslintrc.json) for TypeScript
+- [x] Configure Prettier (.prettierrc) for code formatting
+- [x] Create basic Express server structure
 
 ### 1.4 Testing Setup
 
