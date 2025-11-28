@@ -55,9 +55,34 @@ Feature management operations for application permissions and functionality cont
 - `feature_name_exists()` - Check feature name duplicates
 - `get_version()` - Package version info
 
-### P_ACCOUNTS_FEATURES_RIGHTS (Planned)
+### P_ACCOUNTS_FEATURES_RIGHTS ✅ COMPLETE
 
-User permission management linking accounts to features.
+User permission management linking accounts to features with granular access control.
+
+**Files:**
+
+- `p_accounts_features_rights_spec.sql` - Package specification
+- `p_accounts_features_rights_body.sql` - Package implementation
+- `install_p_accounts_features_rights.sql` - Installation script
+
+**Functions:**
+
+- `create_record()` - Create new account-feature assignment
+- `update_record()` - Update existing assignment
+- `delete_record()` - Delete assignment by PK
+- `delete_by_account_feature()` - Delete by account and feature IDs
+- `get_record()` - Get assignment by PK (JSON)
+- `get_record_by_account_feature()` - Get by account and feature IDs (JSON)
+- `get_features_by_account()` - Get all features for an account (paginated)
+- `get_accounts_by_feature()` - Get all accounts for a feature (paginated)
+- `get_records()` - Get paginated assignments list (JSON)
+- `get_record_count()` - Get total count with filters
+- `record_to_json()` - Convert record to JSON with account/feature details
+- `assignment_exists()` - Check duplicate assignments
+- `is_valid_account()` - Validate account ID
+- `is_valid_feature()` - Validate feature ID
+- `is_valid_right()` - Validate right value (F/R)
+- `get_version()` - Package version info
 
 ### P_SESSIONS (Planned)
 
@@ -73,6 +98,9 @@ Session and JWT token management operations.
 
 -- Install P_FEATURES package
 @@install_p_features.sql
+
+-- Install P_ACCOUNTS_FEATURES_RIGHTS package
+@@install_p_accounts_features_rights.sql
 
 -- Or install specific package
 @packages/install_p_accounts.sql

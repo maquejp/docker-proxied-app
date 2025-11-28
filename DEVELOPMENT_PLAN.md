@@ -74,15 +74,15 @@ This document outlines the implementation phases for the Docker Proxied App proj
 - [x] Implement get_records function (with pagination, ordering, filtering)
 - [x] Add JSON helper function
 
-### 2.4 Oracle Package Development - p_accounts_features_rights
+### 2.4 Oracle Package Development - p_accounts_features_rights ✅
 
-- [ ] Create p_accounts_features_rights package specification
-- [ ] Implement create_record function
-- [ ] Implement update_record function
-- [ ] Implement delete_record function
-- [ ] Implement get_record function
-- [ ] Implement get_records function (with pagination, ordering, filtering)
-- [ ] Add JSON helper function
+- [x] Create p_accounts_features_rights package specification
+- [x] Implement create_record function
+- [x] Implement update_record function
+- [x] Implement delete_record function
+- [x] Implement get_record function
+- [x] Implement get_records function (with pagination, ordering, filtering)
+- [x] Add JSON helper function
 
 ### 2.5 Oracle Package Development - p_sessions
 

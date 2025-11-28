@@ -71,6 +71,12 @@ PROMPT Installing p_features package specification...
 PROMPT Installing p_features package body...
 @@packages/p_features_body.sql
 
+PROMPT Installing p_accounts_features_rights package specification...
+@@packages/p_accounts_features_rights_spec.sql
+
+PROMPT Installing p_accounts_features_rights package body...
+@@packages/p_accounts_features_rights_body.sql
+
 -- Verify installation
 PROMPT
 PROMPT ========================================
@@ -151,9 +157,9 @@ PROMPT
 PROMPT Next steps:
 PROMPT 1. Review the created objects using SQL*Plus DESCRIBE commands
 PROMPT 2. Test database connectivity from your application
-PROMPT 3. Test Oracle packages using: SELECT p_accounts.get_version(), p_features.get_version() FROM DUAL;
+PROMPT 3. Test Oracle packages using: SELECT p_accounts.get_version(), p_features.get_version(), p_accounts_features_rights.get_version() FROM DUAL;
 PROMPT 4. Load initial application data as needed
-PROMPT 5. Additional packages (p_sessions, p_accounts_features_rights) will be installed in future phases
+PROMPT 5. Additional packages (p_sessions) will be installed in future phases
 PROMPT
 
 -- Commit all changes
