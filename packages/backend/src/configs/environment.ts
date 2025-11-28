@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const NODE_ENV = process.env.NODE_ENV || 'development';
-export const PORT = process.env.PORT || 3000;
+export const PORT = process.env.BACKEND_PORT || process.env.PORT || 3000;
 export const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:4200';
 
 // Oracle Database Configuration

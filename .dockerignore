@@ -1,0 +1,83 @@
+# Docker ignore file for pre-built artifacts approach
+
+# Source files (we only want built distribution folders)
+packages/frontend/src
+packages/backend/src
+
+# TypeScript configuration files
+**/tsconfig*.json
+**/angular.json
+
+# Development dependencies and lock files
+**/yarn.lock
+**/package-lock.json
+
+# Test files and directories
+**/test
+**/tests
+**/__tests__
+**/*.test.*
+**/*.spec.*
+packages/testing
+
+# Development configuration
+**/.env.local
+**/.env.development
+**/jest.config.js
+**/karma.conf.js
+**/protractor.conf.js
+
+# Documentation
+*.md
+!README.md
+DEVELOPMENT_PLAN.md
+prd.md
+
+# Version control
+.git
+.gitignore
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory
+coverage
+.nyc_output
+
+# Dependency directories that we don't want (except backend/node_modules for production)
+packages/frontend/node_modules
+
+# Build outputs we don't want (we'll explicitly copy the ones we need)
+**/dist
+!packages/frontend/dist
+!packages/backend/dist
+
+# Temporary files
+*.tmp
+*.temp

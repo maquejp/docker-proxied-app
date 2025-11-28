@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: packages/docker/Dockerfile
+    ports:
+      - "8095:8095"
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - PORT=${BACKEND_PORT:-3000}
+      - FRONTEND_URL=${FRONTEND_URL}
+      - ORACLE_SERVER=${ORACLE_SERVER}
+      - ORACLE_PORT=${ORACLE_PORT}
+      - ORACLE_USERNAME=${ORACLE_USERNAME}
+      - ORACLE_PASSWORD=${ORACLE_PASSWORD}
+      - ORACLE_DATABASE=${ORACLE_DATABASE}
+      - JWT_SECRET=${JWT_SECRET}
+    env_file:
+      - .env
+    # Note: No volumes needed as we're using pre-built artifacts
+    # For development with live reload, use separate docker-compose.dev.yml
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:8095/api/health",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # Optional: Oracle Database for development
+  # oracle-db:
+  #   image: gvenzl/oracle-xe:latest
+  #   ports:
+  #     - "1521:1521"
+  #   environment:
+  #     - ORACLE_PASSWORD=your_password
+  #     - ORACLE_DATABASE=XEPDB1
+  #   volumes:
+  #     - oracle-data:/opt/oracle/oradata
+  #     - ../database/tables:/docker-entrypoint-initdb.d/tables
+  #     - ../database/packages:/docker-entrypoint-initdb.d/packages
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  oracle-data:
+    driver: local
