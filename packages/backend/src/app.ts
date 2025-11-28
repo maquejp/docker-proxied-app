@@ -43,8 +43,12 @@ class App {
       await databaseService.initialize();
       this.logger.info('Database connection initialized successfully');
     } catch (error) {
-      const errorMessage = error instanceof Error ? error : new Error(String(error));
-      this.logger.error('Failed to initialize database connection:', errorMessage);
+      const errorMessage =
+        error instanceof Error ? error : new Error(String(error));
+      this.logger.error(
+        'Failed to initialize database connection:',
+        errorMessage
+      );
       throw errorMessage;
     }
   }
@@ -102,27 +106,31 @@ class App {
     });
 
     // Database status endpoint
-    this.app.get('/api/database/status', async (req: Request, res: Response) => {
-      try {
-        const isHealthy = await databaseService.testConnection();
-        const poolStats = databaseService.getPoolStatistics();
-        
-        res.status(isHealthy ? 200 : 503).json({
-          database: 'Oracle Database',
-          status: isHealthy ? 'connected' : 'disconnected',
-          pool: poolStats,
-          timestamp: new Date().toISOString(),
-        });
-      } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-        res.status(503).json({
-          database: 'Oracle Database',
-          status: 'error',
-          error: errorMessage,
-          timestamp: new Date().toISOString(),
-        });
+    this.app.get(
+      '/api/database/status',
+      async (req: Request, res: Response) => {
+        try {
+          const isHealthy = await databaseService.testConnection();
+          const poolStats = databaseService.getPoolStatistics();
+
+          res.status(isHealthy ? 200 : 503).json({
+            database: 'Oracle Database',
+            status: isHealthy ? 'connected' : 'disconnected',
+            pool: poolStats,
+            timestamp: new Date().toISOString(),
+          });
+        } catch (error) {
+          const errorMessage =
+            error instanceof Error ? error.message : 'Unknown error';
+          res.status(503).json({
+            database: 'Oracle Database',
+            status: 'error',
+            error: errorMessage,
+            timestamp: new Date().toISOString(),
+          });
+        }
       }
-    });
+    );
 
     // API routes will be added here in future phases
     // this.app.use('/api/auth', authRoutes);

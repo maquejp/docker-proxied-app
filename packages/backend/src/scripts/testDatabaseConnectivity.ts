@@ -39,12 +39,12 @@ async function testDatabaseConnectivity(): Promise<void> {
 
     // Test package function calls (if packages exist)
     logger.info('📦 Testing Oracle package calls...');
-    
+
     try {
       // Test p_accounts package
       logger.info('Testing p_accounts.get_records...');
       const accountsResult = await databaseService.callPackageFunction(
-        'p_accounts', 
+        'p_accounts',
         'get_records',
         {
           p_page_number: 1,
@@ -52,18 +52,25 @@ async function testDatabaseConnectivity(): Promise<void> {
           p_order_by: 'pk',
           p_order_dir: 'ASC',
           p_filter_field: '',
-          p_filter_value: ''
+          p_filter_value: '',
         }
       );
       logger.info('✅ p_accounts.get_records result:', accountsResult);
     } catch (packageError) {
-      logger.warn('📦 Package test failed (packages might not be deployed):', packageError instanceof Error ? packageError : new Error(String(packageError)));
+      logger.warn(
+        '📦 Package test failed (packages might not be deployed):',
+        packageError instanceof Error
+          ? packageError
+          : new Error(String(packageError))
+      );
     }
 
     logger.info('🎉 Database connectivity test completed successfully!');
-
   } catch (error) {
-    logger.error('❌ Database connectivity test failed:', error instanceof Error ? error : new Error(String(error)));
+    logger.error(
+      '❌ Database connectivity test failed:',
+      error instanceof Error ? error : new Error(String(error))
+    );
     process.exit(1);
   } finally {
     // Cleanup
@@ -71,9 +78,14 @@ async function testDatabaseConnectivity(): Promise<void> {
       await databaseService.shutdown();
       logger.info('✅ Database service shutdown completed');
     } catch (shutdownError) {
-      logger.error('❌ Error during database shutdown:', shutdownError instanceof Error ? shutdownError : new Error(String(shutdownError)));
+      logger.error(
+        '❌ Error during database shutdown:',
+        shutdownError instanceof Error
+          ? shutdownError
+          : new Error(String(shutdownError))
+      );
     }
-    
+
     process.exit(0);
   }
 }
@@ -81,7 +93,10 @@ async function testDatabaseConnectivity(): Promise<void> {
 // Run the test
 if (require.main === module) {
   testDatabaseConnectivity().catch(error => {
-    logger.error('❌ Test runner error:', error instanceof Error ? error : new Error(String(error)));
+    logger.error(
+      '❌ Test runner error:',
+      error instanceof Error ? error : new Error(String(error))
+    );
     process.exit(1);
   });
 }

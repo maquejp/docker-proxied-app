@@ -89,7 +89,10 @@ export const setupGracefulShutdown = (
         logger.info('Database service shutdown completed');
       }
     } catch (error) {
-      logger.error('Error during database shutdown:', error instanceof Error ? error : new Error(String(error)));
+      logger.error(
+        'Error during database shutdown:',
+        error instanceof Error ? error : new Error(String(error))
+      );
     }
   });
 

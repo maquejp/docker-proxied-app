@@ -27,7 +27,7 @@ export const dbConfig: DatabaseConfig = {
   poolTimeout: ORACLE_CONFIG.poolTimeout,
   stmtCacheSize: ORACLE_CONFIG.stmtCacheSize,
   queueTimeout: ORACLE_CONFIG.queueTimeout,
-  poolPingInterval: ORACLE_CONFIG.poolPingInterval
+  poolPingInterval: ORACLE_CONFIG.poolPingInterval,
 };
 
 // Oracle connection pool configuration
@@ -42,24 +42,24 @@ export const poolConfig: oracledb.PoolAttributes = {
   stmtCacheSize: dbConfig.stmtCacheSize,
   queueTimeout: dbConfig.queueTimeout,
   poolPingInterval: dbConfig.poolPingInterval,
-  
+
   // Pool alias for easy reference
-  poolAlias: 'docker-app-pool'
+  poolAlias: 'docker-app-pool',
 };
 
 // Oracle connection options
 export const connectionOptions: oracledb.ExecuteOptions = {
   // Auto commit for non-transactional operations
   autoCommit: false,
-  
+
   // Fetch array size for better performance
   fetchArraySize: 100,
-  
+
   // Result set format
   outFormat: oracledb.OUT_FORMAT_OBJECT,
-  
+
   // Maximum rows to fetch
-  maxRows: 1000
+  maxRows: 1000,
 };
 
 // Initialize Oracle client configuration
@@ -69,17 +69,18 @@ export function initializeOracleClient(): void {
     oracledb.initOracleClient({
       // Oracle Instant Client path (if needed)
       libDir: ORACLE_CONFIG.clientLibDir,
-      
+
       // Oracle configuration directory (if needed)
       configDir: ORACLE_CONFIG.configDir,
-      
+
       // Error URL for better error messages
-      errorUrl: 'https://oracle.github.io/node-oracledb/INSTALL.html'
+      errorUrl: 'https://oracle.github.io/node-oracledb/INSTALL.html',
     });
-    
+
     logger.info('Oracle client initialized successfully');
   } catch (error) {
-    const errorMessage = error instanceof Error ? error : new Error(String(error));
+    const errorMessage =
+      error instanceof Error ? error : new Error(String(error));
     logger.error('Failed to initialize Oracle client:', errorMessage);
     throw errorMessage;
   }

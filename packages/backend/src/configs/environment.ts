@@ -15,8 +15,10 @@ export const ORACLE_CONFIG = {
   password: process.env.ORACLE_PASSWORD || 'docker_app_password',
   service: process.env.ORACLE_SERVICE || 'XE',
   database: process.env.ORACLE_DATABASE || 'XE',
-  connectString: process.env.ORACLE_CONNECT_STRING || `${process.env.ORACLE_SERVER || 'localhost'}:${process.env.ORACLE_PORT || '1521'}/${process.env.ORACLE_SERVICE || 'XE'}`,
-  
+  connectString:
+    process.env.ORACLE_CONNECT_STRING ||
+    `${process.env.ORACLE_SERVER || 'localhost'}:${process.env.ORACLE_PORT || '1521'}/${process.env.ORACLE_SERVICE || 'XE'}`,
+
   // Connection pool settings
   poolMin: parseInt(process.env.DB_POOL_MIN || '2', 10),
   poolMax: parseInt(process.env.DB_POOL_MAX || '10', 10),
@@ -25,7 +27,7 @@ export const ORACLE_CONFIG = {
   stmtCacheSize: parseInt(process.env.DB_STMT_CACHE_SIZE || '30', 10),
   queueTimeout: parseInt(process.env.DB_QUEUE_TIMEOUT || '60000', 10),
   poolPingInterval: parseInt(process.env.DB_POOL_PING_INTERVAL || '60', 10),
-  
+
   // Oracle client configuration
   clientLibDir: process.env.ORACLE_CLIENT_LIB_DIR || undefined,
   configDir: process.env.ORACLE_CONFIG_DIR || undefined,

@@ -9,12 +9,15 @@ async function startApplication(): Promise<void> {
   try {
     // Initialize database connection
     await app.initializeDatabase();
-    
+
     // Start server
     app.listen();
     logger.info('🎯 Application started successfully');
   } catch (error) {
-    logger.error('Failed to start application:', error instanceof Error ? error : new Error(String(error)));
+    logger.error(
+      'Failed to start application:',
+      error instanceof Error ? error : new Error(String(error))
+    );
     process.exit(1);
   }
 }
