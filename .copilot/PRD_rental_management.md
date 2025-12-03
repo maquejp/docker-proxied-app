@@ -45,6 +45,7 @@ Follow the PRD_instructions.md methodology and template.
 ### 4. Functional Requirements
 
 - Core features:
+
   - Property & unit management: create/edit properties, units, unit types, add photos and documents, set rent, security deposit, and available dates.
   - Tenant profiles and onboarding: capture contact details, documents (ID, proof of income), assign to units, record lease start/end and rent terms.
   - Lease management: create, upload, and sign digital lease agreements; store lease terms, renewal rules, and notice periods.
@@ -54,6 +55,7 @@ Follow the PRD_instructions.md methodology and template.
   - Reporting & exports: rent roll, payments ledger, arrears report, export CSV/PDF for accounting.
 
 - Edge cases & special flows:
+
   - Partial payments and automatic allocation across invoices.
   - Prorated rent on move-in / move-out.
   - Late fee calculation with configurable grace periods.
@@ -62,6 +64,7 @@ Follow the PRD_instructions.md methodology and template.
   - Multi-currency display (MVP: display only; payments single-currency depending on provider).
 
 - Non-functional requirements (high level):
+
   - Performance: page loads < 500ms for primary dashboard actions under typical load.
   - Scalability: support portfolios up to 5,000 units in a single tenant account; design to scale horizontally.
   - Security: encrypted data at rest and in transit, role-based access control, audit logs for financial actions.
