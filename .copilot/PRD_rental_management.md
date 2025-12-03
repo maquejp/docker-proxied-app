@@ -1,6 +1,6 @@
 Follow the PRD_instructions.md methodology and template.
 
-**Version:** 0.2  
+**Version:** 0.3  
 **Last Updated:** 2025-12-03  
 **Author:** Jean-Philippe  
 **Status:** Draft
@@ -11,6 +11,7 @@ Follow the PRD_instructions.md methodology and template.
 | ------- | ---------- | ------------- | ------------------------------------------------- |
 | 0.1     | 2025-12-03 | Jean-Philippe | Initial skeleton draft for Rental Management Tool |
 | 0.2     | 2025-12-03 | Jean-Philippe | Draft Executive Summary added                     |
+| 0.3     | 2025-12-03 | Jean-Philippe | Draft Functional Requirements added               |
 
 ### 1. Executive Summary
 
@@ -43,9 +44,35 @@ Follow the PRD_instructions.md methodology and template.
 
 ### 4. Functional Requirements
 
-- Core features: property and unit management, tenant onboarding, rent collection, maintenance requests, lease management.
-- Edge cases: partial payments, late fees, evictions, multi-currency, subletting.
-- Non-functional requirements: performance, scalability, security, backup/restore.
+- Core features:
+  - Property & unit management: create/edit properties, units, unit types, add photos and documents, set rent, security deposit, and available dates.
+  - Tenant profiles and onboarding: capture contact details, documents (ID, proof of income), assign to units, record lease start/end and rent terms.
+  - Lease management: create, upload, and sign digital lease agreements; store lease terms, renewal rules, and notice periods.
+  - Rent invoicing & payments: generate recurring invoices, support online payments via integrated payment provider, record offline payments, handle partial payments and apply late fees.
+  - Maintenance & tickets: tenants or managers submit maintenance requests, technicians assigned, status tracking, messaging and attachments, cost logging.
+  - Notifications & reminders: automated rent reminders, overdue notices, maintenance updates via email/SMS (configurable).
+  - Reporting & exports: rent roll, payments ledger, arrears report, export CSV/PDF for accounting.
+
+- Edge cases & special flows:
+  - Partial payments and automatic allocation across invoices.
+  - Prorated rent on move-in / move-out.
+  - Late fee calculation with configurable grace periods.
+  - Security deposit handling and refund workflows.
+  - Lease transfer, subletting flags and approvals.
+  - Multi-currency display (MVP: display only; payments single-currency depending on provider).
+
+- Non-functional requirements (high level):
+  - Performance: page loads < 500ms for primary dashboard actions under typical load.
+  - Scalability: support portfolios up to 5,000 units in a single tenant account; design to scale horizontally.
+  - Security: encrypted data at rest and in transit, role-based access control, audit logs for financial actions.
+  - Availability & Backup: 99.9% uptime target, daily backups with point-in-time recovery for 30 days.
+
+- Acceptance criteria (per feature):
+  - Property management: create/edit/delete a property and at least one unit; changes persist and visible to other managers.
+  - Tenant onboarding: create tenant profile, attach required documents, assign tenant to a unit and create a lease record.
+  - Rent payments: generate invoice, accept a payment (online or offline), reflect in payments ledger, and update tenant balance.
+  - Maintenance: submit a ticket with attachment, change status through lifecycle, and record resolution notes and costs.
+  - Reporting: export rent roll and payments ledger within 30 seconds for up to 5,000 units.
 
 ### 5. System Architecture Considerations
 
