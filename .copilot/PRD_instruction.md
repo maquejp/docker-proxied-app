@@ -29,7 +29,48 @@ This file defines the strict methodology to be followed when generating or refin
 
 ---
 
+## Git Discipline
+
+### Commit Convention
+
+- Use **Conventional Commits** format:
+  - `feat:` for new features
+  - `fix:` for bug fixes
+  - `docs:` for documentation changes (including PRD updates)
+  - `refactor:` for restructuring without changing behavior
+  - `chore:` for maintenance tasks
+
+Examples:
+
+- docs(prd): add architecture considerations section
+- feat(prd): define new user persona
+- fix(prd): correct success metric wording
+
+### Branching Strategy
+
+- Always create a **branch per feature or PRD section**.
+  - Examples: `feature/prd-user-stories`, `feature/prd-architecture`, `feature/prd-validation`
+- Merge into `main` only after review and validation.
+- Align PRD version numbers with branch merges (e.g., PRD v1.2 ↔ merge of `feature/prd-ux`).
+
+---
+
 ## PRD Template
+
+### Version Control
+
+**Version:** X.Y  
+**Last Updated:** YYYY‑MM‑DD  
+**Author:** Jean‑Philippe  
+**Status:** Draft / Approved / Archived
+
+#### Revision History
+
+| Version | Date       | Author        | Changes                               |
+| ------- | ---------- | ------------- | ------------------------------------- |
+| 0.1     | YYYY‑MM‑DD | Jean‑Philippe | Initial skeleton draft                |
+| 0.9     | YYYY‑MM‑DD | Jean‑Philippe | Added functional requirements section |
+| 1.0     | YYYY‑MM‑DD | Jean‑Philippe | Finalized architecture considerations |
 
 ### 1. Executive Summary
 
@@ -84,5 +125,6 @@ This file defines the strict methodology to be followed when generating or refin
 ## Prompting Guidelines
 
 - Always start with: _“Follow the PRD_instructions.md methodology and template.”_
+- Copilot must **auto‑increment the version number** and **append a new entry in the Revision History** whenever changes are made.
 - Use slot‑filling: ask Copilot to complete one section at a time.
 - Iterate until each section is fully detailed.
