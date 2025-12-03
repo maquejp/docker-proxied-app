@@ -1,6 +1,6 @@
 Follow the PRD_instructions.md methodology and template.
 
-**Version:** 0.3  
+**Version:** 0.4  
 **Last Updated:** 2025-12-03  
 **Author:** Jean-Philippe  
 **Status:** Draft
@@ -12,6 +12,7 @@ Follow the PRD_instructions.md methodology and template.
 | 0.1     | 2025-12-03 | Jean-Philippe | Initial skeleton draft for Rental Management Tool |
 | 0.2     | 2025-12-03 | Jean-Philippe | Draft Executive Summary added                     |
 | 0.3     | 2025-12-03 | Jean-Philippe | Draft Functional Requirements added               |
+| 0.4     | 2025-12-03 | Jean-Philippe | Draft Vacation Rentals compatibility added        |
 
 ### 1. Executive Summary
 
@@ -76,6 +77,49 @@ Follow the PRD_instructions.md methodology and template.
   - Rent payments: generate invoice, accept a payment (online or offline), reflect in payments ledger, and update tenant balance.
   - Maintenance: submit a ticket with attachment, change status through lifecycle, and record resolution notes and costs.
   - Reporting: export rent roll and payments ledger within 30 seconds for up to 5,000 units.
+
+### Vacation Rentals Compatibility
+
+This product's core feature set is compatible with short-term / vacation rentals in many ways, but supporting vacation-rental workflows requires additional entities, flows and integrations. The sections below describe gaps, recommended minimal MVP changes, acceptance criteria for short-term rentals, and data-model notes.
+
+- Compatibility summary:
+
+  - Works well: property/unit management, guest/tenant contact profiles, payment recording, maintenance/ticketing, basic reporting and exports.
+  - Missing or partial: booking/reservation lifecycle, calendar and availability sync, per-night rate models, cleaning/turnover ops, tourism taxes and compliance, channel integrations.
+
+- Identified gaps (needed for vacation-rental parity):
+
+  - Reservation & Booking: dedicated reservation entity and lifecycle separate from long-term leases (requested → confirmed → checked-in → checked-out → closed).
+  - Availability Calendar & Blocking: per-unit calendar view, manual blocks, and iCal import/export for channel sync.
+  - Pricing & Fees: nightly rates, seasonal/weekday/weekday rules, cleaning fees, extra-guest fees, minimum-night rules, discounts/coupons.
+  - Security Deposits & Damage Handling: pre-authorizations, hold capture, damage claims and settlement flow.
+  - Turnover & Operations: cleaning tasks generation, scheduling, and assignment on checkout.
+  - Channel Manager Integrations: at least iCal import/export; bi-directional marketplace sync is optional for later phases.
+  - Tax & Compliance: transient occupancy / tourist tax calculation and reporting (collection/remittance out-of-scope for MVP).
+  - Guest Messaging & Check-in: guest-facing templates and automated messages, check-in instructions, and self-checkin flows.
+
+- Minimal MVP-friendly additions to support vacation rentals:
+
+  - Add `Reservation` entity and simple calendar UI with iCal import/export.
+  - Support per-night pricing with a basic `RatePlan` (base nightly + cleaning + min nights).
+  - Add security deposit hold recording and a refund/settlement flow.
+  - Auto-generate a cleaning/turnover task on checkout.
+  - Provide guest messaging templates (confirmation, check-in, checkout reminders).
+
+- Acceptance criteria (vacation-rental scenarios):
+
+  - Create Reservation: create a reservation for a unit, block the calendar for the reservation dates, and set status to `confirmed`.
+  - Reservation Invoicing: generate an invoice for a reservation (nightly rate, cleaning fee, taxes) and record payment.
+  - Security deposit: record a deposit hold and later release or apply to damages with audit trail.
+  - Turnover task: checkout triggers a cleaning task assigned to a team/worker and visible in the operations list.
+  - Calendar sync: import an iCal feed and block conflicting dates on the internal calendar.
+
+- Data model / integration notes:
+  - New entities: `Reservation`, `RatePlan`, `CalendarAvailability`, `CleaningTask`, `DepositHold`, `GuestMessageTemplate`.
+  - Integrations: iCal (low-effort), payment provider for deposits (Stripe/Adyen), optional ID-check providers.
+  - Compliance: flag units subject to transient-occupancy taxes and store relevant permit/registration data in unit metadata.
+
+These changes are backward compatible with long-term rental workflows: a `Reservation` is separate from a `Lease` and uses the same unit records.
 
 ### 5. System Architecture Considerations
 
