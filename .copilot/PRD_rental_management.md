@@ -1,6 +1,6 @@
 Follow the PRD_instructions.md methodology and template.
 
-**Version:** 0.4  
+**Version:** 0.5  
 **Last Updated:** 2025-12-03  
 **Author:** Jean-Philippe  
 **Status:** Draft
@@ -13,6 +13,7 @@ Follow the PRD_instructions.md methodology and template.
 | 0.2     | 2025-12-03 | Jean-Philippe | Draft Executive Summary added                     |
 | 0.3     | 2025-12-03 | Jean-Philippe | Draft Functional Requirements added               |
 | 0.4     | 2025-12-03 | Jean-Philippe | Draft Vacation Rentals compatibility added        |
+| 0.5     | 2025-12-03 | Jean-Philippe | Prioritize vacation rentals as primary product focus |
 
 ### 1. Executive Summary
 
